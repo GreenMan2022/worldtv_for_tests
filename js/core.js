@@ -49,13 +49,20 @@ try {
 }
 
 
+// Получаем Firebase из глобальной области
+const firebase = window.firebase;
+if (!firebase) {
+  throw new Error('Firebase не загружен. Убедитесь, что подключили firebase-app-compat.js через <script>.');
+}
 
-// Инициализация Firebase
+// Инициализация
+const firebaseConfig = { /* ... */ };
 const app = firebase.initializeApp(firebaseConfig);
-export const database = firebase.database(); // ✅ Правильно для compat
+const database = firebase.database();
 
-// Экспортируем firebase для других модулей (если нужно)
-export { firebase };
+// Теперь можно экспортировать
+export { firebase, database, app };
+
 
 // Функция перевода
 export function translateText(key) {
