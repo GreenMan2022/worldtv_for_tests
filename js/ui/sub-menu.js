@@ -1,8 +1,17 @@
 // sub-menu.js
-import { subCategoriesPanel, currentSubcategory, categoryTree } from '../core.js';
-import { translateText } from '../utils/helpers.js';
+import { 
+  subCategoriesPanel, 
+  currentSubcategory, 
+  categoryTree,
+  translateText,
+  loadAndRenderChannels
+} from './core.js';
+
+export let currentSubcategory = '';
 
 export function renderSubCategories(mainCategory = null) {
+  if (!subCategoriesPanel) return;
+  
   subCategoriesPanel.innerHTML = '';
   
   if (!mainCategory || !categoryTree[mainCategory]) {
@@ -29,10 +38,16 @@ export function renderSubCategories(mainCategory = null) {
     }
     
     btn.addEventListener('click', () => {
-      // Ваша логика выбора подкатегории
       currentSubcategory = sub;
-      window.loadAndRenderChannels(mainCategory, sub);
       updateSubCategoryButtons();
+      loadAndRenderChannels(mainCategory, sub);
+    });
+    
+    btn.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
     });
     
     subCategoriesPanel.appendChild(btn);
@@ -42,6 +57,9 @@ export function renderSubCategories(mainCategory = null) {
 function updateSubCategoryButtons() {
   document.querySelectorAll('.subcategory-btn').forEach(btn => {
     btn.classList.remove('active');
+    if (btn.textContent === translateText(currentSubcategory)) {
+      btn.classList.add('active');
+    }
   });
 }
 
