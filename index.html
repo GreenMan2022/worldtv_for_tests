@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="ZjO-Qwe9-sBrQ72O2YlparNENdXCIHBhgIEOJwA-kS0" />
+
+    <!-- 🔍 SEO & GLOBAL TARGETING -->
+    <title>World TV — Watch Free Live TV Channels Online (HD, Worldwide)</title>
+    <meta name="description" content="Stream free live TV channels from around the world: news, sports, movies, kids. No registration, HD quality, works globally.">
+    <meta name="keywords" content="free iptv, live tv online, watch tv free, global tv channels, hd streaming">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="geo.region" content="world">
+    <meta name="geo.placename" content="Worldwide">
+    <meta name="geo.position" content="0;0">
+    <meta name="ICBM" content="0, 0">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="World TV — Free Global Live TV Streaming">
+    <meta property="og:description" content="Watch live TV channels from any country: sports, news, movies, entertainment — in HD and totally free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://worldtv.onrender.com/">
+    <meta property="og:image" content="https://worldtv.onrender.com/logo.jpg">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/style.css?v=1.0.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <noscript>
+        <div style="padding: 30px; background: #f9f9f9; margin: 20px; border-radius: 8px; font-family: Arial, sans-serif;">
+            <h1>World TV — Free Live TV Streaming for Global Audience</h1>
+            <p>Watch hundreds of live TV channels from around the world — completely free. No registration, no ads, HD quality.</p>
+            <h2>Categories:</h2>
+            <ul>
+                <li><a href="#news">📺 News Channels</a></li>
+                <li><a href="#sports">⚽ Sports Channels</a></li>
+                <li><a href="#movies">🎬 Movie Channels</a></li>
+                <li><a href="#kids">🧸 Kids Channels</a></li>
+            </ul>
+            <p>Available worldwide. Updated daily. Works on any device.</p>
+            <p><strong>Note:</strong> JavaScript is required to play streams. Enable JS for full experience.</p>
+        </div>
+    </noscript>
+
+    <!-- Загрузочный экран -->
+    <div class="loader" id="initialLoader">
+        <div class="loader-content">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Загрузка...</p>
+        </div>
+    </div>
+
+    <!-- Главное меню категорий -->
+    <div class="main-categories-panel" id="mainCategoriesPanel"></div>
+
+    <!-- Подменю подкатегорий -->
+    <div class="sub-categories-panel" id="subCategoriesPanel"></div>
+
+    <!-- Сетка каналов -->
+    <main class="channels-grid" id="channelsContainer"></main>
+
+    <!-- Модальное окно плеера -->
+    <div class="modal" id="playerModal">
+        <div class="modal-content">
+            <button class="close-btn" id="closeModal">&times;</button>
+            <video id="videoPlayerElement" controls></video>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+    <!-- HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <!-- Основной скрипт -->
+    <script src="/script.js?v=1.0.0"></script>
+
+    <!-- Yandex.Metrika informer -->
+    <a href="https://metrika.yandex.ru/stat/?id=104248573&amp;from=informer" target="_blank" rel="nofollow">
+        <img src="https://metrika-informer.com/informer/104248573/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+             style="width:88px; height:31px; border:0;"
+             alt="Яндекс.Метрика"
+             title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" />
+    </a>
+    <!-- /Yandex.Metrika informer -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.webvisor.org/metrika/tag_ww.js?id=104248573', 'ym');
+
+        ym(104248573, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript>
+        <div>
+            <img src="https://mc.yandex.ru/watch/104248573" style="position:absolute; left:-9999px;" alt="" />
+        </div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Telegram Footer -->
+    <footer class="telegram-footer">
+        <a href="https://t.me/worldtvandroidclient" target="_blank" rel="noopener">
+            <i class="fab fa-telegram"></i>
+            Telegram!
+        </a>
+    </footer>
+
+    <style>
+        .telegram-footer {
+            margin-top: 40px;
+            padding: 16px;
+            background-color: #fffff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .telegram-footer a {
+            color: #0088cc;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .telegram-footer a:hover {
+            color: #00bfff;
+        }
+    </style>
+</body>
+</html>
