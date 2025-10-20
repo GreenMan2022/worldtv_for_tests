@@ -48,9 +48,7 @@ try {
   ];
 }
 
-// 🔥 Firebase: ИСПОЛЬЗУЕМ compat-режим — НИКАКИХ getDatabase!
-import firebase from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';
-import 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js';
+
 
 // Инициализация Firebase
 const app = firebase.initializeApp(firebaseConfig);
