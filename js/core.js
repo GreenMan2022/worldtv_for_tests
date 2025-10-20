@@ -1,4 +1,4 @@
-// core.js — точка входа
+// core.js — точка входа (исправленная версия)
 
 // DOM элементы
 export const channelsContainer = document.getElementById('channelsContainer');
@@ -19,7 +19,7 @@ export { firebaseConfig, categoryTree, translations };
 
 // Глобальное состояние
 export let currentLanguage = localStorage.getItem('appLanguage') || 'ru';
-export let currentMainCategory = localStorage.getItem('homeMainCategory') || 'Главная';
+export let currentMainCategory = localStorage.getItem('homeMainCategory') || 'Просмотренные';
 export let currentSubcategory = '';
 export let checkChannelsOnLoad = localStorage.getItem('checkChannelsOnLoad') === 'true';
 export let loadedPlaylists = {};
@@ -48,25 +48,25 @@ try {
   ];
 }
 
-// Firebase - ИСПРАВЛЕННЫЙ ИМПОРТ
-// Используем compat версию для обратной совместимости
+// 🔥 Firebase: ИСПОЛЬЗУЕМ compat-режим — НИКАКИХ getDatabase!
 import firebase from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';
 import 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js';
 
 // Инициализация Firebase
 const app = firebase.initializeApp(firebaseConfig);
-export const database = firebase.database();
+export const database = firebase.database(); // ✅ Правильно для compat
+
+// Экспортируем firebase для других модулей (если нужно)
+export { firebase };
 
 // Функция перевода
 export function translateText(key) {
   return translations[currentLanguage][key] || key;
 }
 
-// Функция загрузки каналов (заглушка - нужно реализовать)
+// Заглушка загрузки каналов
 export function loadAndRenderChannels(mainCategory, subCategory) {
   console.log('Loading channels for:', mainCategory, subCategory);
-  
-  // Заглушка - отображаем сообщение
   if (channelsContainer) {
     channelsContainer.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #aaa;">
@@ -81,22 +81,18 @@ export function loadAndRenderChannels(mainCategory, subCategory) {
 // Инициализация
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 TV App Initialized');
+  if (initialLoader) initialLoader.style.display = 'none';
   
-  // Скрываем лоадер
-  if (initialLoader) {
-    initialLoader.style.display = 'none';
-  }
-  
-  // Инициализируем компоненты
+  // Если другие модули зависят от глобальных функций — лучше перенести их сюда или импортировать
+  // Но пока оставим совместимость:
   if (typeof window.renderMainCategories === 'function') {
     window.renderMainCategories();
   }
-  
   if (typeof window.renderSubCategories === 'function') {
     window.renderSubCategories(currentMainCategory);
   }
-  
-  // Закрытие модального окна
+
+  // Обработчики модального окна
   if (closeModal && playerModal) {
     closeModal.addEventListener('click', () => {
       playerModal.style.display = 'none';
@@ -106,8 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  
-  // Закрытие по ESC
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && playerModal && playerModal.style.display === 'flex') {
       playerModal.style.display = 'none';
@@ -118,6 +113,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-// Экспортируем firebase для использования в других модулях
-export { firebase };
