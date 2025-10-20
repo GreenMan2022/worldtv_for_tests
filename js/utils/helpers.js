@@ -1,7 +1,6 @@
 // helpers.js
-
+import { translations, currentLanguage } from './core.js';
 import { translations } from '../config/translations.js';
-import { currentLanguage } from '../core.js';
 
 export function translateText(key) {
   return translations[currentLanguage][key] || key;
