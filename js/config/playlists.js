@@ -1,0 +1,93 @@
+// playlists.js
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyD9mAjCqyhJix9Tiyr-vQXWj-Mejysws44",
+  authDomain: "tv-channels-watching.firebaseapp.com",
+  databaseURL: "https://tv-channels-watching-default-rtdb.firebaseio.com",
+  projectId: "tv-channels-watching",
+  storageBucket: "tv-channels-watching.firebasestorage.app",
+  messagingSenderId: "625169237639",
+  appId: "1:625169237639:web:beeed9dc2d424aeb269a22",
+  measurementId: "G-B1HFTLJ7BM"
+};
+
+export const categoryTree = {
+  "Главная": {},
+  "Просмотренные": {},
+  "Прямо сейчас": {},
+  "Популярные": {},
+  "Свой плейлист": {},
+  "Пользовательские плейлисты": {},
+  "Случайный канал": {},
+  "Категории": {
+    "Авто": "https://iptv-org.github.io/iptv/categories/auto.m3u",
+    "Анимация": "https://iptv-org.github.io/iptv/categories/animation.m3u",
+    "Бизнес": "https://iptv-org.github.io/iptv/categories/business.m3u",
+    "Детские": "https://iptv-org.github.io/iptv/categories/kids.m3u",
+    "Документальные": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
+    "Законодательные": "https://iptv-org.github.io/iptv/categories/legislative.m3u",
+    "Интерактивные": "https://iptv-org.github.io/iptv/categories/interactive.m3u",
+    "Кино": "https://iptv-org.github.io/iptv/categories/movies.m3u",
+    "Классика": "https://iptv-org.github.io/iptv/categories/classic.m3u",
+    "Комедии": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
+    "Кулинария": "https://iptv-org.github.io/iptv/categories/cooking.m3u",
+    "Культура": "https://iptv-org.github.io/iptv/categories/culture.m3u",
+    "Музыка": "https://iptv-org.github.io/iptv/categories/music.m3u",
+    "Наука": "https://iptv-org.github.io/iptv/categories/science.m3u",
+    "Не определено": "https://iptv-org.github.io/iptv/categories/undefined.m3u",
+    "Новости": "https://iptv-org.github.io/iptv/categories/news.m3u",
+    "Образ жизни": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
+    "Образование": "https://iptv-org.github.io/iptv/categories/education.m3u",
+    "Общие": "https://iptv-org.github.io/iptv/categories/general.m3u",
+    "Погода": "https://iptv-org.github.io/iptv/categories/weather.m3u",
+    "Развлечения": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
+    "Религиозные": "https://iptv-org.github.io/iptv/categories/religious.m3u",
+    "Релакс": "https://iptv-org.github.io/iptv/categories/relax.m3u",
+    "Семейные": "https://iptv-org.github.io/iptv/categories/family.m3u",
+    "Сериалы": "https://iptv-org.github.io/iptv/categories/series.m3u",
+    "Спорт": "https://iptv-org.github.io/iptv/categories/sports.m3u",
+    "Шопинг": "https://iptv-org.github.io/iptv/categories/shop.m3u",
+    "Путешествия": "https://iptv-org.github.io/iptv/categories/travel.m3u",
+    "Общественные": "https://iptv-org.github.io/iptv/categories/public.m3u",
+    "Активный отдых": "https://iptv-org.github.io/iptv/categories/outdoor.m3u",
+    "XXX": "https://iptv-org.github.io/iptv/categories/xxx.m3u"
+  },
+  "Страны": {
+    "Россия": "https://iptv-org.github.io/iptv/countries/ru.m3u",
+    "США": "https://iptv-org.github.io/iptv/countries/us.m3u",
+    "Великобритания": "https://iptv-org.github.io/iptv/countries/uk.m3u",
+    "Германия": "https://iptv-org.github.io/iptv/countries/de.m3u",
+    "Франция": "https://iptv-org.github.io/iptv/countries/fr.m3u",
+    "Италия": "https://iptv-org.github.io/iptv/countries/it.m3u",
+    "Испания": "https://iptv-org.github.io/iptv/countries/es.m3u",
+    "Китай": "https://iptv-org.github.io/iptv/countries/cn.m3u",
+    "Япония": "https://iptv-org.github.io/iptv/countries/jp.m3u",
+    "Южная Корея": "https://iptv-org.github.io/iptv/countries/kr.m3u",
+    "Индия": "https://iptv-org.github.io/iptv/countries/in.m3u",
+    "Бразилия": "https://iptv-org.github.io/iptv/countries/br.m3u",
+    "Международные": "https://iptv-org.github.io/iptv/countries/int.m3u",
+    "Не определено": "https://iptv-org.github.io/iptv/countries/undefined.m3u"
+  },
+  "Языки": {
+    "Русский": "https://iptv-org.github.io/iptv/languages/rus.m3u",
+    "Английский": "https://iptv-org.github.io/iptv/languages/eng.m3u",
+    "Испанский": "https://iptv-org.github.io/iptv/languages/spa.m3u",
+    "Французский": "https://iptv-org.github.io/iptv/languages/fra.m3u",
+    "Немецкий": "https://iptv-org.github.io/iptv/languages/deu.m3u",
+    "Китайский": "https://iptv-org.github.io/iptv/languages/zho.m3u",
+    "Японский": "https://iptv-org.github.io/iptv/languages/jpn.m3u",
+    "Португальский": "https://iptv-org.github.io/iptv/languages/por.m3u",
+    "Итальянский": "https://iptv-org.github.io/iptv/languages/ita.m3u",
+    "Не определено": "https://iptv-org.github.io/iptv/languages/undefined.m3u"
+  },
+  "Регионы": {
+    "Европа": "https://iptv-org.github.io/iptv/regions/eur.m3u",
+    "Северная Америка": "https://iptv-org.github.io/iptv/regions/noram.m3u",
+    "Латинская Америка": "https://iptv-org.github.io/iptv/regions/latam.m3u",
+    "Азия": "https://iptv-org.github.io/iptv/regions/asia.m3u",
+    "Африка": "https://iptv-org.github.io/iptv/regions/afr.m3u",
+    "Океания": "https://iptv-org.github.io/iptv/regions/oce.m3u",
+    "Ближний Восток": "https://iptv-org.github.io/iptv/regions/mideast.m3u",
+    "Не определено": "https://iptv-org.github.io/iptv/regions/undefined.m3u"
+  }
+};
