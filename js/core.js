@@ -10,6 +10,13 @@ export const closeModal = document.getElementById('closeModal');
 export const initialLoader = document.getElementById('initialLoader');
 export const toastContainer = document.getElementById('toastContainer');
 
+// Импортируем конфигурации
+import { firebaseConfig, categoryTree } from '../config/playlists.js';
+import { translations } from '../config/translations.js';
+
+// Экспортируем их
+export { firebaseConfig, categoryTree, translations };
+
 // Глобальное состояние
 export let currentLanguage = localStorage.getItem('appLanguage') || 'ru';
 export let currentMainCategory = localStorage.getItem('homeMainCategory') || 'Главная';
@@ -20,7 +27,7 @@ export let navigationState = 'channels';
 export let currentWatchedChannel = null;
 export let watchStartTime = null;
 
-// Главная: пользовательские ленты (с безопасным парсингом)
+// Главная: пользовательские ленты
 export let homeRows;
 try {
   homeRows = JSON.parse(localStorage.getItem('homeRows')) || [
@@ -42,36 +49,34 @@ try {
 }
 
 // Firebase
-import { firebaseConfig } from '../config/playlists.js';
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';
 import { getDatabase } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js';
 const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
-
-// Переводы
-import { translations } from '../config/translations.js';
-export { translations };
 
 // Функция перевода
 export function translateText(key) {
   return translations[currentLanguage][key] || key;
 }
 
-// Импорт модулей
-import './ui/main-menu.js';
-import './ui/sub-menu.js';
-import './ui/home-screen.js';
-import './channels/loader.js';
-import './channels/renderer.js';
-import './channels/player.js';
-import './utils/toast.js';
-import './utils/blacklist.js';
-import './utils/helpers.js';
-import './navigation.js';
+// Добавьте эту функцию (она используется в других файлах)
+export function loadAndRenderChannels(mainCategory, subCategory) {
+  console.log('Loading channels for:', mainCategory, subCategory);
+  // Здесь будет ваша логика загрузки каналов
+}
 
 // Инициализация
 document.addEventListener('DOMContentLoaded', () => {
-  window.renderMainCategories();
-  window.renderSubCategories();
-  window.loadAndRenderChannels(currentMainCategory, currentSubcategory);
+  // Скрываем лоадер
+  if (initialLoader) {
+    initialLoader.style.display = 'none';
+  }
+  
+  // Инициализируем компоненты
+  if (typeof window.renderMainCategories === 'function') {
+    window.renderMainCategories();
+  }
+  if (typeof window.renderSubCategories === 'function') {
+    window.renderSubCategories(currentMainCategory);
+  }
 });
